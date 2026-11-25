@@ -1,4 +1,4 @@
-import { createRootRoute, HeadContent, Link, Outlet } from '@tanstack/react-router'
+import { createRootRoute, HeadContent, Outlet, useRouterState } from '@tanstack/react-router'
 
 export const Route = createRootRoute({
   component: Layout,
@@ -7,14 +7,23 @@ export const Route = createRootRoute({
 })
 
 function Layout() {
+  const isStandalonePage = useRouterState({
+    select: (state) => ['/fotokurs', '/admin'].includes(state.location.pathname),
+  })
+
+  if (isStandalonePage) {
+    return (
+      <>
+        <HeadContent />
+        <Outlet />
+      </>
+    )
+  }
+
   return (
     <div className="site">
       <HeadContent />
-      <nav aria-label="Huvudmeny">
-        <Link to="/" activeOptions={{ exact: true }}>Hem</Link>
-        <Link to="/admin">Admin</Link>
-      </nav>
-      <main><Outlet /></main>
+      <Outlet />
     </div>
   )
 }

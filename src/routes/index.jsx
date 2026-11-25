@@ -1,15 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { WorkshopCard } from '../components/WorkshopCard'
+import { FotokursPage } from './fotokurs'
 
 export const Route = createFileRoute('/')({
-  component: Home,
+  component: FotokursPage,
+  head: () => ({ meta: [{ title: 'Foto Workshop · Ta kontroll över din kamera' }] }),
 })
-
-function Home() {
-  return (
-    <>
-      <h1>Fotoworkshopen</h1>
-      <WorkshopCard />
-    </>
-  )
-}

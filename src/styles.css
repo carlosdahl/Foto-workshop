@@ -1,30 +1,77 @@
 @import '@fontsource-variable/dm-sans';
 
-/* Samma värden används på webbsidan och i Storybook. */
 :root {
-  --color-page: #f4f3ed;
-  --color-surface: #ffffff;
-  --color-text: #222c28;
-  --color-accent: #285d4c;
-  --color-line: #b7c0b9;
+  color-scheme: dark;
+  --color-page: #1a1b27;
+  --color-surface: #16161f;
+  --color-panel: #282e44;
+  --color-text: #f7f7fb;
+  --color-muted: #becaf9;
+  --color-secondary: #7d84a4;
+  --color-blue: #6ea3fe;
+  --color-purple: #c198fd;
+  --color-line: rgb(190 202 249 / 16%);
   --text-body: 1rem;
-  --text-heading: clamp(2rem, 6vw, 3.5rem);
-  --text-card-title: 1.5rem;
-  --space-card: clamp(1rem, 4vw, 2rem);
+  --text-heading: clamp(2.5rem, 6vw, 5.5rem);
+  --space-card: clamp(1.25rem, 3vw, 2rem);
   font-family: 'DM Sans Variable', system-ui, sans-serif;
   color: var(--color-text);
   background: var(--color-page);
   font-size: 100%;
   line-height: 1.5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
 }
 
 * { box-sizing: border-box; }
-body { margin: 0; font-size: var(--text-body); }
-.site { width: min(100% - 2rem, 58rem); margin: 0 auto; }
-nav { display: flex; gap: 1.5rem; border-bottom: 1px solid var(--color-line); }
-nav a { padding: 1rem 0; color: var(--color-accent); text-underline-offset: 0.25em; }
-nav [aria-current="page"] { font-weight: 700; }
-main { padding-block: 2.5rem; }
-h1 { font-size: var(--text-heading); line-height: 1.1; margin: 0 0 1.5rem; }
-h2 { font-size: var(--text-card-title); line-height: 1.25; margin: 0 0 0.75rem; }
-:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 3px; }
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--color-page);
+  font-size: var(--text-body);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a { color: inherit; }
+
+button { color: inherit; }
+
+img,
+svg { display: block; }
+
+h1,
+h2,
+h3,
+p { margin-top: 0; }
+
+:focus-visible {
+  outline: 3px solid var(--color-blue);
+  outline-offset: 4px;
+}
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  width: 1px;
+  height: 1px;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
