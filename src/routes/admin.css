@@ -23,7 +23,7 @@
 .booking-avatar { display: grid; flex: 0 0 auto; width: 2rem; height: 2rem; place-items: center; border-radius: 50%; background: #373253; color: var(--color-purple); font-size: 0.63rem; font-weight: 700; }
 .admin-profile > span:nth-child(2) { display: grid; gap: 0.1rem; font-size: 0.7rem; }
 .admin-profile small { color: var(--color-secondary); font-size: 0.65rem; }
-.profile-menu { margin-left: auto; border: 0; background: transparent; color: var(--color-muted); cursor: pointer; font-size: 1.3rem; }
+.profile-menu { min-width: 2.75rem; min-height: 2.75rem; margin-left: auto; border: 0; background: transparent; color: var(--color-muted); cursor: pointer; font-size: 1.3rem; }
 
 .admin-main { min-height: 100vh; margin-left: 15.5rem; }
 .admin-topbar { display: flex; min-height: 4.5rem; align-items: center; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--color-line); padding-inline: clamp(1.5rem, 4vw, 3.5rem); }
@@ -36,11 +36,11 @@
 .admin-page-heading h1 { margin: 0; font-size: clamp(2rem, 3.8vw, 2.85rem); font-weight: 550; letter-spacing: -0.06em; line-height: 1.1; }
 .admin-page-heading h1 span { color: var(--color-purple); font-size: 1.5rem; }
 .admin-subtitle { margin: 0.55rem 0 0; color: var(--color-secondary); font-size: 0.85rem; }
-.admin-create-button { display: inline-flex; min-height: 2.8rem; align-items: center; justify-content: center; gap: 0.55rem; border: 0; border-radius: 0.55rem; padding: 0.65rem 1rem; background: var(--color-purple); color: #1a1b27; cursor: pointer; font-size: 0.78rem; font-weight: 800; transition: filter 120ms ease, transform 120ms ease; }
+.admin-create-button { display: inline-flex; min-height: 2.75rem; align-items: center; justify-content: center; gap: 0.55rem; border: 0; border-radius: 0.55rem; padding: 0.6rem 0.95rem; background: var(--color-purple); color: #1a1b27; cursor: pointer; font-size: 1rem; font-weight: 700; transition: filter 120ms ease, transform 120ms ease; }
 .admin-create-button:hover { filter: brightness(1.08); transform: translateY(-1px); }
 .admin-create-button span { font-size: 1.1rem; font-weight: 500; }
 .admin-notice { display: flex; justify-content: space-between; margin: -0.6rem 0 1.3rem; border: 1px solid rgb(110 163 254 / 35%); border-radius: 0.5rem; padding: 0.65rem 0.85rem; background: rgb(110 163 254 / 8%); color: var(--color-muted); font-size: 0.8rem; }
-.admin-notice button { border: 0; background: transparent; color: var(--color-muted); cursor: pointer; font-size: 1.1rem; line-height: 1; }
+.admin-notice button { min-width: 2.75rem; min-height: 2.75rem; border: 0; background: transparent; color: var(--color-muted); cursor: pointer; font-size: 1.1rem; line-height: 1; }
 
 .stats-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.85rem; }
 .stat-card { min-width: 0; border: 1px solid var(--color-line); border-radius: 0.75rem; padding: 1.1rem 1.15rem; background: linear-gradient(140deg, #24283b, #1d1e2b); }
@@ -64,7 +64,7 @@
 .workshop-search input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--color-text); font-size: 0.72rem; }
 .workshop-search input::placeholder { color: var(--color-secondary); }
 .filter-tabs { display: flex; gap: 0.35rem; margin-bottom: 0.7rem; }
-.filter-tabs button { border: 0; border-radius: 999px; padding: 0.4rem 0.75rem; background: transparent; color: var(--color-secondary); cursor: pointer; font-size: 0.69rem; }
+.filter-tabs button { min-height: 2.75rem; border: 0; border-radius: 999px; padding: 0.5rem 0.8rem; background: transparent; color: var(--color-secondary); cursor: pointer; font-size: 0.9rem; }
 .filter-tabs button:hover { color: var(--color-muted); }
 .filter-tabs button.is-selected { background: rgb(193 152 253 / 14%); color: var(--color-purple); font-weight: 700; }
 .workshop-list { display: grid; gap: 0.65rem; }
@@ -86,19 +86,19 @@
 .booking-status > span { font-size: 0.52rem; }
 .booking-status--full { color: var(--color-purple); }
 .booking-status--closed { color: var(--color-secondary); }
-.workshop-more { border: 0; background: transparent; color: var(--color-muted); cursor: pointer; font-size: 0.68rem; white-space: nowrap; }
+.workshop-more { min-height: 2.75rem; border: 0; border-radius: 0.4rem; padding-inline: 0.3rem; background: transparent; color: var(--color-muted); cursor: pointer; font-size: 0.9rem; white-space: nowrap; }
 .workshop-more span { padding-left: 0.2rem; color: var(--color-blue); }
 .workshop-more:hover { color: var(--color-purple); }
 .workshop-details { display: flex; grid-column: 1 / -1; align-items: center; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--color-line); padding: 0.8rem 0.15rem 0.1rem; }
 .workshop-details h4 { margin: 0 0 0.35rem; font-size: 0.7rem; }
 .workshop-details h4 span { margin-left: 0.3rem; color: var(--color-blue); }
 .workshop-details p { max-width: 38rem; margin: 0; color: var(--color-secondary); font-size: 0.68rem; line-height: 1.6; }
-.workshop-details button { flex: 0 0 auto; border: 1px solid var(--color-line); border-radius: 0.4rem; padding: 0.5rem 0.7rem; background: transparent; color: var(--color-muted); cursor: pointer; font-size: 0.65rem; }
+.workshop-details button { min-height: 2.75rem; flex: 0 0 auto; border: 1px solid var(--color-line); border-radius: 0.4rem; padding: 0.55rem 0.8rem; background: transparent; color: var(--color-muted); cursor: pointer; font-size: 0.9rem; }
 .workshop-details button:hover { border-color: var(--color-purple); color: var(--color-purple); }
 .empty-workshops { display: grid; min-height: 9rem; place-content: center; justify-items: center; border: 1px dashed var(--color-line); border-radius: 0.7rem; color: var(--color-secondary); }
 .empty-workshops > span { color: var(--color-purple); font-size: 1.5rem; }
 .empty-workshops p { margin: 0.4rem 0; font-size: 0.78rem; }
-.empty-workshops button { border: 0; background: transparent; color: var(--color-blue); cursor: pointer; font-size: 0.7rem; }
+.empty-workshops button { min-height: 2.75rem; border: 0; background: transparent; color: var(--color-blue); cursor: pointer; font-size: 0.9rem; }
 
 .bookings-section { margin-top: 2.5rem; }
 .all-bookings-link { color: var(--color-blue); font-size: 0.68rem; text-decoration: none; }
@@ -121,14 +121,14 @@
 .modal-heading { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.25rem; }
 .modal-heading .admin-overline { margin-bottom: 0.3rem; }
 .modal-heading h2 { margin: 0; font-size: 1.5rem; letter-spacing: -0.04em; }
-.modal-heading > button { border: 0; background: transparent; color: var(--color-secondary); cursor: pointer; font-size: 1.5rem; line-height: 1; }
+.modal-heading > button { min-width: 2.75rem; min-height: 2.75rem; border: 0; background: transparent; color: var(--color-secondary); cursor: pointer; font-size: 1.5rem; line-height: 1; }
 .create-modal form { display: grid; gap: 1rem; }
 .create-modal label { display: grid; gap: 0.4rem; color: var(--color-muted); font-size: 0.72rem; font-weight: 650; }
 .create-modal input { width: 100%; min-height: 2.7rem; border: 1px solid var(--color-line); border-radius: 0.45rem; padding: 0.55rem 0.7rem; background: var(--color-surface); color: var(--color-text); font-size: 0.75rem; }
 .create-modal input::placeholder { color: var(--color-secondary); }
 .modal-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
 .modal-actions { display: flex; justify-content: flex-end; gap: 0.65rem; margin-top: 0.35rem; }
-.modal-cancel { border: 1px solid var(--color-line); border-radius: 0.5rem; padding: 0.6rem 0.9rem; background: transparent; color: var(--color-muted); cursor: pointer; font-size: 0.75rem; }
+.modal-cancel { min-height: 2.75rem; border: 1px solid var(--color-line); border-radius: 0.5rem; padding: 0.55rem 0.9rem; background: transparent; color: var(--color-muted); cursor: pointer; font-size: 0.95rem; }
 
 @media (max-width: 1050px) {
   .admin-sidebar { width: 4.5rem; align-items: center; padding-inline: 0.55rem; }

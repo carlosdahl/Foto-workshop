@@ -1,5 +1,3 @@
-@import '@fontsource-variable/dm-sans';
-
 :root {
   color-scheme: dark;
   --color-page: #1a1b27;
@@ -14,7 +12,7 @@
   --text-body: 1rem;
   --text-heading: clamp(2.5rem, 6vw, 5.5rem);
   --space-card: clamp(1.25rem, 3vw, 2rem);
-  font-family: 'DM Sans Variable', system-ui, sans-serif;
+  font-family: Tahoma, Arial, sans-serif;
   color: var(--color-text);
   background: var(--color-page);
   font-size: 100%;

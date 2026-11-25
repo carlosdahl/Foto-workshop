@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1200" fill="none">
+  <defs>
+    <radialGradient id="barrel" cx="50%" cy="35%" r="70%">
+      <stop offset="0" stop-color="#34384c"/>
+      <stop offset=".48" stop-color="#11131f"/>
+      <stop offset=".76" stop-color="#292d40"/>
+      <stop offset="1" stop-color="#090a11"/>
+    </radialGradient>
+    <radialGradient id="glass" cx="46%" cy="24%" r="78%">
+      <stop offset="0" stop-color="#b39a79"/>
+      <stop offset=".2" stop-color="#665b57"/>
+      <stop offset=".43" stop-color="#26283a"/>
+      <stop offset=".75" stop-color="#10121f"/>
+      <stop offset="1" stop-color="#04050a"/>
+    </radialGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#a8afc8" stop-opacity=".75"/>
+      <stop offset=".22" stop-color="#222638"/>
+      <stop offset=".5" stop-color="#8189a2" stop-opacity=".48"/>
+      <stop offset=".76" stop-color="#11131f"/>
+      <stop offset="1" stop-color="#687089" stop-opacity=".62"/>
+    </linearGradient>
+    <linearGradient id="reflection" x1=".2" y1="0" x2=".8" y2="1">
+      <stop stop-color="#ddc59b" stop-opacity=".5"/>
+      <stop offset=".65" stop-color="#a9875e" stop-opacity=".14"/>
+      <stop offset="1" stop-color="#a9875e" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="soften" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="30"/>
+    </filter>
+  </defs>
+  <ellipse cx="720" cy="370" rx="920" ry="650" fill="url(#barrel)"/>
+  <ellipse cx="720" cy="325" rx="790" ry="560" fill="#080a12" stroke="url(#rim)" stroke-width="34"/>
+  <ellipse cx="720" cy="310" rx="690" ry="475" fill="#141725" stroke="#50566d" stroke-opacity=".65" stroke-width="10"/>
+  <ellipse cx="720" cy="295" rx="610" ry="405" fill="url(#glass)" stroke="url(#rim)" stroke-width="24"/>
+  <ellipse cx="720" cy="278" rx="520" ry="330" stroke="#bbc2d5" stroke-opacity=".27" stroke-width="5"/>
+  <ellipse cx="720" cy="270" rx="470" ry="290" stroke="#05060c" stroke-width="22"/>
+  <ellipse cx="720" cy="255" rx="435" ry="255" fill="#0b0d17" stroke="url(#rim)" stroke-width="14"/>
+  <ellipse cx="720" cy="245" rx="365" ry="205" fill="url(#glass)" stroke="#777f99" stroke-opacity=".55" stroke-width="8"/>
+  <ellipse cx="720" cy="228" rx="290" ry="150" fill="#101321" stroke="#05060b" stroke-width="18"/>
+  <ellipse cx="720" cy="220" rx="225" ry="112" fill="url(#barrel)" stroke="#6b7289" stroke-opacity=".6" stroke-width="7"/>
+  <ellipse cx="720" cy="215" rx="170" ry="80" fill="url(#glass)" stroke="#080a11" stroke-width="15"/>
+  <ellipse cx="720" cy="205" rx="100" ry="49" fill="#090b14" stroke="#778099" stroke-opacity=".5" stroke-width="5"/>
+  <ellipse cx="720" cy="190" rx="82" ry="34" fill="#03040a"/>
+  <ellipse cx="720" cy="180" rx="320" ry="135" fill="url(#reflection)" filter="url(#soften)"/>
+  <path d="M75 558c260 114 1030 125 1290 0" stroke="#adb4ca" stroke-opacity=".22" stroke-width="7"/>
+  <path d="M110 600c245 102 975 112 1220 0" stroke="#05060c" stroke-opacity=".78" stroke-width="22"/>
+</svg>
