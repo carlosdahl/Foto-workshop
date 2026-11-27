@@ -142,10 +142,10 @@ export function FotokursPage() {
             <img className="course-star course-star--three" src={starsImage} alt="" />
           </div>
           <p className="course-result-message">Tack för din bokning</p>
-          <Link className="course-home-link" to="/">
+          <button className="course-home-link" type="button" onClick={() => setScreen('home')}>
             <img src={homeIcon} alt="" />
             Tillbaka till startsidan
-          </Link>
+          </button>
         </main>
       )}
 
@@ -172,10 +172,10 @@ export function FotokursPage() {
       {screen === 'cancelled' && (
         <main className="course-cancelled">
           <h1>Din bokning är avbokad<br />Välkommen tillbaka vid ett annat tillfälle</h1>
-          <Link className="course-home-link" to="/">
+          <button className="course-home-link" type="button" onClick={() => setScreen('home')}>
             <img src={homeIcon} alt="" />
             Tillbaka till startsidan
-          </Link>
+          </button>
         </main>
       )}
     </div>

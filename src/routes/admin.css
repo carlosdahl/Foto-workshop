@@ -81,7 +81,7 @@
 .capacity-label strong { color: var(--color-muted); font-weight: 600; }
 .capacity-label strong span { color: var(--color-secondary); font-weight: 400; }
 .capacity-track { height: 0.28rem; overflow: hidden; border-radius: 99px; background: rgb(190 202 249 / 12%); }
-.capacity-track span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--color-blue), var(--color-purple)); }
+.capacity-track span { display: block; height: 100%; border-radius: inherit; background: #6ea3fe; }
 .booking-status { display: inline-flex; align-items: center; gap: 0.3rem; color: var(--color-blue); font-size: 0.63rem; white-space: nowrap; }
 .booking-status > span { font-size: 0.52rem; }
 .booking-status--full { color: var(--color-purple); }
