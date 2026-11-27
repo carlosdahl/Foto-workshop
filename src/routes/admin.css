@@ -104,7 +104,9 @@
 .all-bookings-link { color: var(--color-blue); font-size: 0.68rem; text-decoration: none; }
 .all-bookings-link span { margin-left: 0.25rem; }
 .recent-bookings { overflow: hidden; border: 1px solid var(--color-line); border-radius: 0.7rem; }
-.recent-booking { display: grid; min-height: 3.8rem; grid-template-columns: 2rem minmax(10rem, 1fr) minmax(6rem, auto) auto; align-items: center; gap: 0.75rem; border-bottom: 1px solid var(--color-line); padding-inline: 0.9rem; }
+.recent-booking { display: grid; width: 100%; min-height: 3.8rem; grid-template-columns: 2rem minmax(10rem, 1fr) minmax(6rem, auto) auto; align-items: center; gap: 0.75rem; border: 0; border-bottom: 1px solid var(--color-line); padding-inline: 0.9rem; background: transparent; color: inherit; cursor: pointer; font: inherit; text-align: left; }
+.recent-booking:hover { background: rgb(190 202 249 / 5%); }
+.recent-booking:focus-visible { outline: 2px solid var(--color-blue); outline-offset: -2px; }
 .recent-booking:last-child { border-bottom: 0; }
 .booking-avatar { width: 1.9rem; height: 1.9rem; background: #293951; color: var(--color-blue); }
 .booking-person { display: grid; min-width: 0; gap: 0.15rem; }
@@ -113,6 +115,33 @@
 .recent-booking time { color: var(--color-secondary); font-size: 0.63rem; }
 .booking-confirmed { color: var(--color-blue); font-size: 0.62rem; white-space: nowrap; }
 .booking-confirmed span { margin-right: 0.25rem; font-size: 0.5rem; }
+.booking-comments-view { min-height: calc(100svh - 7rem); border-radius: 0.75rem; padding: clamp(1.25rem, 3vw, 2rem); background: #becaf9; color: #16161f; }
+.booking-comments-back { min-height: 2.75rem; border: 0; padding: 0; background: transparent; color: #16161f; cursor: pointer; font: inherit; font-size: 0.8rem; font-weight: 700; }
+.booking-comments-heading { margin: 1rem 0 1.5rem; }
+.booking-comments-heading .admin-overline { margin: 0 0 0.35rem; color: #282e44; }
+.booking-comments-heading h1 { margin: 0; font-size: clamp(1.75rem, 4vw, 2.5rem); letter-spacing: -0.04em; }
+.booking-comments-heading > p:not(.admin-overline) { margin: 0.45rem 0 1.5rem; color: #282e44; font-size: 0.85rem; }
+.booking-comments-heading h2 { margin: 0; font-size: 1.2rem; }
+.booking-comments-heading h2 span { margin-left: 0.35rem; color: #282e44; font-size: 0.85rem; }
+.booking-comment-list { display: grid; max-width: 46rem; gap: 0.85rem; }
+.booking-comment-card { display: grid; gap: 0.5rem; padding: 0.75rem 1rem; background: #7d84a4; color: #becaf9; }
+.booking-comment-actions { display: flex; justify-content: flex-end; gap: 1.75rem; }
+.booking-comment-actions button,
+.booking-comment-reply-form button { min-width: 5.15rem; min-height: 2.45rem; border: 0; padding: 0.55rem 0.7rem; background: #16161f; color: #becaf9; cursor: pointer; font: inherit; font-size: 0.85rem; }
+.booking-comment-actions button:hover,
+.booking-comment-reply-form button:hover:not(:disabled) { background: #282e44; }
+.booking-comment-body { display: flex; align-items: center; gap: 0.65rem; }
+.booking-comment-avatar { display: block; flex: 0 0 auto; }
+.booking-comment-body p,
+.booking-comment-reply p { margin: 0; color: #becaf9; font-size: 0.95rem; line-height: 1.4; }
+.booking-comment-reply { margin-left: 5.15rem; border-left: 2px solid #becaf9; padding: 0.25rem 0 0.25rem 0.75rem; }
+.booking-comment-reply strong { display: block; margin-bottom: 0.25rem; color: #16161f; font-size: 0.75rem; }
+.booking-comment-reply-form { display: grid; gap: 0.6rem; margin-left: 5.15rem; }
+.booking-comment-reply-form label { display: grid; gap: 0.35rem; color: #16161f; font-size: 0.8rem; font-weight: 700; }
+.booking-comment-reply-form textarea { width: 100%; border: 1px solid rgb(22 22 31 / 35%); border-radius: 0.25rem; padding: 0.6rem; background: #becaf9; color: #16161f; font: inherit; font-size: 0.85rem; resize: vertical; }
+.booking-comment-reply-form > div { display: flex; justify-content: flex-end; gap: 0.5rem; }
+.booking-comment-reply-form button:disabled { cursor: not-allowed; opacity: 0.55; }
+.booking-comments-empty { margin: 0; border: 1px dashed rgb(22 22 31 / 45%); padding: 1.5rem; color: #282e44; text-align: center; }
 .admin-footer { margin-top: 2.5rem; border-top: 1px solid var(--color-line); padding-block: 1.15rem; color: var(--color-secondary); font-size: 0.63rem; }
 .admin-footer span { padding-inline: 0.35rem; color: var(--color-purple); }
 
@@ -185,5 +214,12 @@
   .recent-booking { grid-template-columns: 1.8rem minmax(0, 1fr) auto; gap: 0.5rem; padding-inline: 0.65rem; }
   .recent-booking time { display: none; }
   .booking-confirmed { font-size: 0.58rem; }
+  .booking-comment-card { padding: 0.7rem; }
+  .booking-comment-actions { gap: 1rem; }
+  .booking-comment-body { gap: 0.35rem; }
+  .booking-comment-body p,
+  .booking-comment-reply p { font-size: 0.85rem; }
+  .booking-comment-reply,
+  .booking-comment-reply-form { margin-left: 3.5rem; }
   .modal-field-row { grid-template-columns: 1fr; }
 }

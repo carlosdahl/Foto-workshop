@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
+import defaultCommentAvatar from '../assets/fotokurs/admin-comments/avatar-default.svg'
+import alternateCommentAvatar from '../assets/fotokurs/admin-comments/avatar-alt.svg'
 import './admin.css'
 
 const initialWorkshops = [
@@ -32,10 +34,43 @@ const initialWorkshops = [
   },
 ]
 
-const recentBookings = [
-  { initials: 'AH', name: 'Alex Holm', workshop: 'Fotografera i kvällsljus', date: 'Idag, 09:42' },
-  { initials: 'ML', name: 'Mira Lind', workshop: 'Fotografera i kvällsljus', date: 'Igår, 16:18' },
-  { initials: 'AS', name: 'Amina Saleh', workshop: 'Ta kontroll över din kamera', date: 'Igår, 11:06' },
+const initialBookings = [
+  {
+    id: 'alex-holm',
+    initials: 'AH',
+    name: 'Alex Holm',
+    workshop: 'Fotografera i kvällsljus',
+    date: 'Idag, 09:42',
+    comments: [{
+      id: 'alex-comment',
+      text: 'Jag har bokat den 28:e men vet inte var vi ska träffas.',
+      avatar: defaultCommentAvatar,
+    }],
+  },
+  {
+    id: 'mira-lind',
+    initials: 'ML',
+    name: 'Mira Lind',
+    workshop: 'Fotografera i kvällsljus',
+    date: 'Igår, 16:18',
+    comments: [{
+      id: 'mira-comment',
+      text: 'Det låter spännande att lära sig grunderna för att använda kamera.',
+      avatar: alternateCommentAvatar,
+    }],
+  },
+  {
+    id: 'amina-saleh',
+    initials: 'AS',
+    name: 'Amina Saleh',
+    workshop: 'Ta kontroll över din kamera',
+    date: 'Igår, 11:06',
+    comments: [{
+      id: 'amina-comment',
+      text: 'Kan man använda en gammal kameramodell eller behöver man en uppdaterad modell?',
+      avatar: defaultCommentAvatar,
+    }],
+  },
 ]
 
 export const Route = createFileRoute('/admin')({
@@ -51,14 +86,102 @@ function formatDate(value) {
   })
 }
 
+function BookingComments({ booking, onBack, onDeleteComment, onReply }) {
+  const [replyingTo, setReplyingTo] = useState(null)
+  const [replyText, setReplyText] = useState('')
+
+  function submitReply(event, commentId) {
+    event.preventDefault()
+    const reply = replyText.trim()
+    if (!reply) return
+
+    onReply(commentId, reply)
+    setReplyText('')
+    setReplyingTo(null)
+  }
+
+  return (
+    <section className="booking-comments-view" aria-labelledby="booking-comments-title">
+      <button className="booking-comments-back" type="button" onClick={onBack}>
+        ← Tillbaka till bokningar
+      </button>
+      <header className="booking-comments-heading">
+        <p className="admin-overline">BOKNING</p>
+        <h1 id="booking-comments-title">{booking.name}</h1>
+        <p>{booking.workshop} <span aria-hidden="true">·</span> {booking.date}</p>
+        <h2>Kommentarer <span>{booking.comments.length}</span></h2>
+      </header>
+
+      {booking.comments.length > 0 ? (
+        <div className="booking-comment-list">
+          {booking.comments.map((comment) => (
+            <article className="booking-comment-card" key={comment.id}>
+              <div className="booking-comment-actions">
+                <button
+                  type="button"
+                  aria-expanded={replyingTo === comment.id}
+                  aria-controls={`reply-${comment.id}`}
+                  onClick={() => {
+                    setReplyingTo((current) => current === comment.id ? null : comment.id)
+                    setReplyText('')
+                  }}
+                >
+                  Svara
+                </button>
+                <button type="button" onClick={() => onDeleteComment(comment.id)}>Radera</button>
+              </div>
+              <div className="booking-comment-body">
+                <img className="booking-comment-avatar" src={comment.avatar} alt="" />
+                <p>{comment.text}</p>
+              </div>
+              {comment.reply && (
+                <div className="booking-comment-reply">
+                  <strong>Svar från arrangören</strong>
+                  <p>{comment.reply}</p>
+                </div>
+              )}
+              {replyingTo === comment.id && (
+                <form
+                  className="booking-comment-reply-form"
+                  id={`reply-${comment.id}`}
+                  onSubmit={(event) => submitReply(event, comment.id)}
+                >
+                  <label>
+                    Ditt svar
+                    <textarea
+                      value={replyText}
+                      onChange={(event) => setReplyText(event.target.value)}
+                      rows="3"
+                      required
+                    />
+                  </label>
+                  <div>
+                    <button type="button" onClick={() => setReplyingTo(null)}>Avbryt</button>
+                    <button type="submit" disabled={!replyText.trim()}>Skicka svar</button>
+                  </div>
+                </form>
+              )}
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p className="booking-comments-empty">Det finns inga kommentarer för den här bokningen.</p>
+      )}
+    </section>
+  )
+}
+
 function Admin() {
   const [workshops, setWorkshops] = useState(initialWorkshops)
+  const [bookings, setBookings] = useState(initialBookings)
   const [query, setQuery] = useState('')
   const [filter, setFilter] = useState('Alla')
   const [expandedId, setExpandedId] = useState(null)
+  const [selectedBookingId, setSelectedBookingId] = useState(null)
   const [showCreateForm, setShowCreateForm] = useState(false)
   const [notice, setNotice] = useState('')
 
+  const selectedBooking = bookings.find((booking) => booking.id === selectedBookingId)
   const matchingWorkshops = useMemo(() => workshops.filter((workshop) => {
     const matchesQuery = workshop.title.toLowerCase().includes(query.trim().toLowerCase())
     const isFull = workshop.booked >= workshop.capacity
@@ -98,6 +221,28 @@ function Admin() {
     )))
   }
 
+  function deleteBookingComment(commentId) {
+    if (!window.confirm('Vill du ta bort den här kommentaren?')) return
+    setBookings((current) => current.map((booking) => (
+      booking.id === selectedBookingId
+        ? { ...booking, comments: booking.comments.filter((comment) => comment.id !== commentId) }
+        : booking
+    )))
+  }
+
+  function replyToBookingComment(commentId, reply) {
+    setBookings((current) => current.map((booking) => (
+      booking.id === selectedBookingId
+        ? {
+            ...booking,
+            comments: booking.comments.map((comment) => (
+              comment.id === commentId ? { ...comment, reply } : comment
+            )),
+          }
+        : booking
+    )))
+  }
+
   return (
     <div className="admin-shell">
       <aside className="admin-sidebar">
@@ -133,6 +278,15 @@ function Admin() {
         </header>
 
         <div className="admin-content">
+          {selectedBooking ? (
+            <BookingComments
+              booking={selectedBooking}
+              onBack={() => setSelectedBookingId(null)}
+              onDeleteComment={deleteBookingComment}
+              onReply={replyToBookingComment}
+            />
+          ) : (
+            <>
           <div className="admin-page-heading">
             <div>
               <p className="admin-overline">DIN VERKSAMHET</p>
@@ -264,17 +418,28 @@ function Admin() {
               <a className="all-bookings-link" href="#workshops">Visa alla bokningar <span aria-hidden="true">→</span></a>
             </div>
             <div className="recent-bookings">
-              {recentBookings.map((booking) => (
-                <div className="recent-booking" key={booking.name}>
+              {bookings.map((booking) => (
+                <button
+                  className="recent-booking"
+                  key={booking.id}
+                  type="button"
+                  aria-label={`Öppna bokning för ${booking.name}, ${booking.comments.length} kommentarer`}
+                  onClick={() => setSelectedBookingId(booking.id)}
+                >
                   <span className="booking-avatar">{booking.initials}</span>
-                  <span className="booking-person"><strong>{booking.name}</strong><small>{booking.workshop}</small></span>
+                  <span className="booking-person">
+                    <strong>{booking.name}</strong>
+                    <small>{booking.workshop} · {booking.comments.length} {booking.comments.length === 1 ? 'kommentar' : 'kommentarer'}</small>
+                  </span>
                   <time>{booking.date}</time>
                   <span className="booking-confirmed"><span aria-hidden="true">●</span> Bekräftad</span>
-                </div>
+                </button>
               ))}
             </div>
           </section>
           <footer className="admin-footer">Foto Workshop <span>·</span> Arrangörsvy <span>·</span> Byggd för kreativitet</footer>
+            </>
+          )}
         </div>
       </main>
 
