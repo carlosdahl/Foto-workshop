@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
+import cameraImage from '../assets/fotokurs/camera.png'
 import homeIcon from '../assets/fotokurs/home.svg'
 import starsImage from '../assets/fotokurs/stars.svg'
 import './fotokurs.css'
@@ -37,7 +38,7 @@ export function FotokursPage() {
   return (
     <div className="course-page">
       {screen === 'home' && (
-        <main className="course-hero">
+        <main className="course-hero" style={{ '--camera-image': `url("${cameraImage}")` }}>
           <Link className="course-admin-link" to="/admin">Arrangör <span aria-hidden="true">↗</span></Link>
           <div className="course-hero-copy">
             <h1>Ta kontroll<br />över din kamera</h1>
