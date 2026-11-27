@@ -30,7 +30,7 @@
   min-height: 100vh;
   flex-direction: column;
   overflow: hidden;
-  padding: 2rem 1.5rem 5rem;
+  padding: clamp(4rem, 11.9vh, 7.6rem) 4% 5rem;
   background: #1a1b27;
 }
 
@@ -38,7 +38,7 @@
   position: absolute;
   z-index: 1;
   top: 1.5rem;
-  right: 1.5rem;
+  left: 1.5rem;
   border: 1px solid rgb(190 202 249 / 35%);
   border-radius: 999px;
   padding: 0.45rem 0.75rem;
@@ -56,47 +56,52 @@
   z-index: -1;
   inset: 0;
   background-image: var(--camera-image);
-  background-position: center 43%;
+  background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
   content: '';
   opacity: 0.5;
   -webkit-mask-image: url('../assets/fotokurs/camera-mask.svg');
   mask-image: url('../assets/fotokurs/camera-mask.svg');
-  -webkit-mask-position: center;
-  mask-position: center;
+  -webkit-mask-position: center top;
+  mask-position: center top;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-size: cover;
   mask-size: cover;
 }
 
+.course-hero-copy {
+  max-width: 82rem;
+  padding: 2rem 1.5rem 0;
+}
+
 .course-hero-copy h1 {
-  max-width: 66rem;
+  max-width: 65.375rem;
   margin: 0;
   color: var(--course-lavender);
   font-family: Tahoma, Arial, sans-serif;
   font-size: clamp(3.5rem, 8.9vw, 8rem);
   font-weight: 700;
   letter-spacing: -0.045em;
-  line-height: 0.96;
+  line-height: 1.05;
 }
 
 .course-hero-copy p {
-  max-width: 83rem;
-  margin: 2rem 2.5rem 0;
+  max-width: 75rem;
+  margin: clamp(5rem, 13vw, 11.5rem) 0 0 0.8rem;
   color: #fff;
   font-size: clamp(1rem, 1.7vw, 1.5rem);
   line-height: 1.25;
 }
 
 .course-wordmark {
-  align-self: flex-end;
-  margin: auto 1rem 0;
-  padding-top: 5rem;
+  position: absolute;
+  top: clamp(1.5rem, 5.7vw, 5.1rem);
+  right: clamp(1.5rem, 7vw, 6.25rem);
   color: var(--course-lavender);
   font-family: Tahoma, Arial, sans-serif;
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-size: clamp(2rem, 4.5vw, 4rem);
   font-weight: 700;
   line-height: 1;
 }
@@ -162,14 +167,14 @@
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  padding: 0.75rem;
+  padding: 0.625rem;
   background: #fff;
   color: #111;
 }
 
 .overview-heading {
   display: grid;
-  min-height: 6rem;
+  min-height: 9.7rem;
   place-items: center;
   background: #1e1e1e;
 }
@@ -184,62 +189,74 @@
 
 .overview-content {
   display: grid;
-  flex: 1;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-content: space-evenly;
+  grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+  grid-template-areas:
+    "topics details"
+    "note note";
+  align-content: start;
   align-items: start;
-  gap: 2rem 1rem;
-  padding-block: 4rem 1rem;
+  gap: 6.7rem 1rem;
+  padding: 4rem 4.8% 0 3.2%;
 }
 
 .overview-topics,
 .overview-details {
   margin: 0;
   padding-left: 2.5rem;
-  font-size: clamp(1rem, 2.2vw, 2rem);
+  font-size: clamp(1rem, 1.7vw, 1.5rem);
   line-height: 1.22;
 }
 
 .overview-topics {
+  grid-area: topics;
   font-weight: 700;
 }
 
 .overview-note {
+  display: grid;
+  min-height: 6.875rem;
+  grid-area: note;
   align-self: center;
   margin: 0;
   padding: 1.5rem;
   background: #7d84a4;
-  color: var(--course-ink);
-  font-size: clamp(1.2rem, 3.2vw, 2.7rem);
+  color: #d9d9d9;
+  font-size: clamp(1.2rem, 2.5vw, 2.25rem);
   font-weight: 700;
+  place-items: center;
   text-align: center;
 }
 
 .overview-details {
-  grid-column: 1 / 2;
-  align-self: end;
+  grid-area: details;
 }
 
 .overview-dates {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.5rem;
-  margin-top: 1rem;
+  margin: 6.4rem 3.75% 0 4.7%;
 }
 
 .overview-date {
-  min-height: 2.9rem;
-  border: 1px solid var(--course-ink);
-  border-radius: 0.4rem;
+  min-width: 0;
+  min-height: 3.0625rem;
+  border: 0;
+  border-radius: 0;
   padding: 0.6rem 0.75rem;
-  background: var(--course-blue);
+  background: var(--course-lavender);
   color: var(--course-ink);
-  font-size: 1rem;
+  font-size: clamp(1rem, 1.7vw, 1.5rem);
   font-weight: 700;
+  white-space: nowrap;
+}
+
+.overview-date::before {
+  content: '•';
+  margin-right: 0.65rem;
 }
 
 .overview-date.is-selected {
-  border-color: #000;
   background: #000;
   color: var(--course-blue);
 }
@@ -248,16 +265,22 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 1.5rem;
-  margin-top: 2.5rem;
+  gap: 1rem;
+  margin: 6rem 3.75% 0;
+}
+
+.overview-actions .course-text-link {
+  margin-right: auto;
+  order: -1;
 }
 
 .course-button--overview-book {
-  min-width: min(20rem, 100%);
-  min-height: 3rem;
-  padding: 0.65rem 1.25rem;
+  min-width: min(19.5rem, 100%);
+  min-height: 6.4375rem;
+  border-radius: 1.5rem;
+  padding: 2rem 1.5rem;
   background: var(--course-ink);
-  font-size: 1.125rem;
+  font-size: 2rem;
 }
 
 .course-text-link {
@@ -469,19 +492,23 @@
     padding: 1.5rem 1.25rem 2rem;
   }
 
-  .course-admin-link { top: 1rem; right: 1rem; }
+  .course-hero-copy {
+    padding: 2rem 0 0;
+  }
+
+  .course-admin-link { top: 1rem; right: auto; left: 1rem; }
 
   .course-hero-copy h1 {
-    font-size: clamp(3rem, 13vw, 5.5rem);
+    font-size: clamp(2.4rem, 10vw, 3.5rem);
   }
 
   .course-hero-copy p {
-    margin: 1.5rem 0 0;
+    margin: 2rem 0 0;
   }
 
   .course-wordmark {
-    margin-right: 0;
-    padding-top: 4rem;
+    top: 1rem;
+    right: 1rem;
   }
 
   .course-hero-actions {
@@ -500,8 +527,16 @@
 
   .overview-content {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "topics"
+      "details"
+      "note";
     gap: 1.5rem;
-    padding-block: 2rem 1rem;
+    padding: 2rem 0.5rem 0;
+  }
+
+  .overview-heading {
+    min-height: 6rem;
   }
 
   .overview-topics,
@@ -517,15 +552,27 @@
   .overview-dates {
     grid-template-columns: 1fr;
     gap: 0.6rem;
+    margin: 2rem 0 0;
   }
 
   .overview-actions {
     align-items: stretch;
     flex-direction: column;
-    margin-top: 1rem;
+    margin: 1.5rem 0 0;
   }
 
-  .course-button--overview-book { min-height: 3rem; }
+  .overview-actions .course-text-link {
+    margin-right: 0;
+    order: 0;
+  }
+
+  .course-button--overview-book {
+    min-width: 0;
+    min-height: 3rem;
+    border-radius: 0.65rem;
+    padding: 0.65rem 1.25rem;
+    font-size: 1.125rem;
+  }
 
   .course-result {
     gap: 4rem;

@@ -5,7 +5,7 @@ import homeIcon from '../assets/fotokurs/home.svg'
 import starsImage from '../assets/fotokurs/stars.svg'
 import './fotokurs.css'
 
-const dates = ['12 December 2026', '19 December 2026', '9 January 2027']
+const dates = ['14 November 2026', '21 November 2026', '28 November 2026']
 
 export const Route = createFileRoute('/fotokurs')({
   component: FotokursPage,
@@ -17,7 +17,7 @@ export function FotokursPage() {
   const [selectedDate, setSelectedDate] = useState(dates[0])
   const [booking, setBooking] = useState({
     fullName: 'Alex Holm',
-    date: '12 December 2026',
+    date: '21 November 2026',
     time: '10',
     meetingPlace: 'Huvudentré',
   })
@@ -51,7 +51,7 @@ export function FotokursPage() {
           <p className="course-wordmark">Foto Workshop</p>
           <div className="course-hero-actions" aria-label="Kursval">
             <button className="course-button course-button--overview" onClick={() => setScreen('overview')}>
-              Kursöversikt
+              Kursen översikt
             </button>
             <button className="course-button course-button--book" onClick={() => setScreen('overview')}>
               Boka din plats
@@ -66,7 +66,7 @@ export function FotokursPage() {
       {screen === 'overview' && (
         <main className="course-overview">
           <header className="overview-heading">
-            <h1>Kursöversikt</h1>
+            <h1>Kursen översikt</h1>
           </header>
           <div className="overview-content">
             <ul className="overview-topics">
